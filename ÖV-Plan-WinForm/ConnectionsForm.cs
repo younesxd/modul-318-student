@@ -20,16 +20,17 @@ namespace ÖV_Plan_WinForm
 
 
 
-        public void connectionAusgabe(string abfahrt, string ankunft)
+        public void connectionAusgabe(string abfahrt, string ankunft, string date, string time)
         {
             transport = new SwissTransport.Transport();
-            var connections = transport.GetConnections(abfahrt, ankunft);
+            var connections = transport.GetConnections(abfahrt, ankunft, date, time).ConnectionList;
+            var stations = transport.GetStationBoard(abfahrt, "null", date, time).Entries;
 
             libConnections.Items.Clear();
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < connections.Count; i++)
             {
-                string ausgabe = abfahrt + " (" + connections.ConnectionList[i].From.Departure.Remove(0, 11).Remove(5, 8) + ") -> " + ankunft + " (" + connections.ConnectionList[i].To.Arrival.Remove(0, 11).Remove(5, 8) + ") \t Dauer: " + connections.ConnectionList[i].Duration.Remove(0, 3).Remove(5, 3);
+                string ausgabe = "      " +connections[i].From.Departure.Remove(0, 11).Remove(5, 8) + "\t\t" + connections[i].To.Arrival.Remove(0, 11).Remove(5, 8) + "\t\t" + connections[i].Duration.Remove(0, 3).Remove(5, 3) + "\t\t" + stations[i].Category + stations[i].Number;
                 libConnections.Items.Add(ausgabe);
             }
         }

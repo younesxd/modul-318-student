@@ -18,17 +18,16 @@ namespace ÖV_Plan_WinForm
             InitializeComponent();
         }
 
-        public void fahrplanAusgabe(string station)
+        public void fahrplanAusgabe(string station, string date, string time)
         {
             transport = new SwissTransport.Transport();
-
-            var stations = transport.GetStationBoard(station, "null");
+            var stations = transport.GetStationBoard(station, "null", date, time).Entries;
 
             libFahrplan.Items.Clear();
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < stations.Count; i++)
             {
-                string ausgabe = station + " (" + stations.Entries[i].to.Remove(0, 11).Remove(5, 8) + ") -> ";
+                string ausgabe = stations[i].Stop.Departure.TimeOfDay + stations[i].To + stations[i].Category + stations[i].Number;
                 libFahrplan.Items.Add(ausgabe);
             }
 
