@@ -28,22 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.libConnections = new System.Windows.Forms.ListBox();
             this.lblTitel = new System.Windows.Forms.Label();
-            this.lblAbfahrt = new System.Windows.Forms.Label();
-            this.lblAnkunft = new System.Windows.Forms.Label();
-            this.lblDauer = new System.Windows.Forms.Label();
+            this.livConnections = new System.Windows.Forms.ListView();
+            this.cAbfahrtc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cAnkunft = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cDauer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cBus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
-            // 
-            // libConnections
-            // 
-            this.libConnections.FormattingEnabled = true;
-            this.libConnections.ItemHeight = 16;
-            this.libConnections.Location = new System.Drawing.Point(57, 129);
-            this.libConnections.Margin = new System.Windows.Forms.Padding(4);
-            this.libConnections.Name = "libConnections";
-            this.libConnections.Size = new System.Drawing.Size(600, 260);
-            this.libConnections.TabIndex = 0;
             // 
             // lblTitel
             // 
@@ -55,57 +46,64 @@
             this.lblTitel.TabIndex = 1;
             this.lblTitel.Text = "VERBINDUNGEN";
             // 
-            // lblAbfahrt
+            // livConnections
             // 
-            this.lblAbfahrt.AutoSize = true;
-            this.lblAbfahrt.Location = new System.Drawing.Point(84, 108);
-            this.lblAbfahrt.Name = "lblAbfahrt";
-            this.lblAbfahrt.Size = new System.Drawing.Size(54, 17);
-            this.lblAbfahrt.TabIndex = 2;
-            this.lblAbfahrt.Text = "Abfahrt";
+            this.livConnections.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.cAbfahrtc,
+            this.cAnkunft,
+            this.cBus,
+            this.cDauer});
+            this.livConnections.HideSelection = false;
+            this.livConnections.Location = new System.Drawing.Point(57, 113);
+            this.livConnections.Name = "livConnections";
+            this.livConnections.Size = new System.Drawing.Size(600, 276);
+            this.livConnections.TabIndex = 3;
+            this.livConnections.UseCompatibleStateImageBehavior = false;
+            this.livConnections.View = System.Windows.Forms.View.Details;
             // 
-            // lblAnkunft
+            // cAbfahrtc
             // 
-            this.lblAnkunft.AutoSize = true;
-            this.lblAnkunft.Location = new System.Drawing.Point(182, 108);
-            this.lblAnkunft.Name = "lblAnkunft";
-            this.lblAnkunft.Size = new System.Drawing.Size(56, 17);
-            this.lblAnkunft.TabIndex = 3;
-            this.lblAnkunft.Text = "Ankunft";
+            this.cAbfahrtc.Text = "Abfahrt";
+            this.cAbfahrtc.Width = 120;
             // 
-            // lblDauer
+            // cAnkunft
             // 
-            this.lblDauer.AutoSize = true;
-            this.lblDauer.Location = new System.Drawing.Point(316, 108);
-            this.lblDauer.Name = "lblDauer";
-            this.lblDauer.Size = new System.Drawing.Size(47, 17);
-            this.lblDauer.TabIndex = 4;
-            this.lblDauer.Text = "Dauer";
+            this.cAnkunft.Text = "Ankunft";
+            this.cAnkunft.Width = 120;
+            // 
+            // cDauer
+            // 
+            this.cDauer.DisplayIndex = 3;
+            this.cDauer.Text = "Dauer";
+            this.cDauer.Width = 120;
+            // 
+            // cBus
+            // 
+            this.cBus.DisplayIndex = 2;
+            this.cBus.Text = "Bus/ Zug Nummer";
+            this.cBus.Width = 120;
             // 
             // ConnectionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(711, 418);
-            this.Controls.Add(this.lblDauer);
-            this.Controls.Add(this.lblAnkunft);
-            this.Controls.Add(this.lblAbfahrt);
+            this.Controls.Add(this.livConnections);
             this.Controls.Add(this.lblTitel);
-            this.Controls.Add(this.libConnections);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ConnectionsForm";
-            this.Text = "Connections";
+            this.Text = "Verbindungen";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox libConnections;
         private System.Windows.Forms.Label lblTitel;
-        private System.Windows.Forms.Label lblAbfahrt;
-        private System.Windows.Forms.Label lblAnkunft;
-        private System.Windows.Forms.Label lblDauer;
+        private System.Windows.Forms.ListView livConnections;
+        private System.Windows.Forms.ColumnHeader cAbfahrtc;
+        private System.Windows.Forms.ColumnHeader cAnkunft;
+        private System.Windows.Forms.ColumnHeader cBus;
+        private System.Windows.Forms.ColumnHeader cDauer;
     }
 }

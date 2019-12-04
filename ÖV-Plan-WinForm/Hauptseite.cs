@@ -26,16 +26,21 @@ namespace ÖV_Plan_WinForm
         ConnectionsForm frmC = new ConnectionsForm();
         farhplanForm frmF = new farhplanForm();
 
+        /*
+         * -Speichert die 2 Stationen, das Datum und die Zeit in Variablen welche
+         * dann an das Form: ConnectionsForm übergibt.
+         * -Öffnet ein neues Form welches die Verbindungen anzeigt.
+         */
         private void btnSearch1_Click(object sender, EventArgs e)
         {
             string abfahrt = txtAbfahrt.Text;
             string ankunft = txtAnkunft.Text;
 
-            string date = datePicker.Text;
-            string time = txtTime.Text;
+            string datum = datePicker.Text;
+            string zeit = txtTime.Text;
 
             frmC.Show();
-            frmC.connectionAusgabe(abfahrt, ankunft, date, time);
+            frmC.connectionAusgabe(abfahrt, ankunft, datum, zeit);
 
                 
         }
@@ -44,13 +49,15 @@ namespace ÖV_Plan_WinForm
         {
             string station = txtStation.Text;
 
-            string date = datePickerStation.Text;
-            string time = txtTimeStation.Text;
-
             frmF.Show();
-            frmF.fahrplanAusgabe(station, date, time);
+            frmF.fahrplanAusgabe(station);
         }
 
+        /*
+         * -Vergleicht den String welcher sich in der Suche befindet,
+         * vergleicht diesen mit allen Stationen und gibt die Stationen,
+         * welche den eingegebenen String enthalten, in der ListBox aus.
+         */
         private void On_Text_Changed_Von(object sender, EventArgs e)
         {
             string abfahrt = txtAbfahrt.Text;
@@ -60,11 +67,19 @@ namespace ÖV_Plan_WinForm
             libVorschlagVon.Items.Clear();
 
             var stationVon = transport.GetStations(abfahrt).StationList;
-
+            
             for (int i = 0; i < stationVon.Count -1; i++)
             {
                 string ausgabeVon = stationVon[i].Name;
-                libVorschlagVon.Items.Add(ausgabeVon);
+                try
+                {
+                    libVorschlagVon.Items.Add(ausgabeVon);
+                }catch (System.ArgumentNullException)
+                {
+                    txtAbfahrt.Text = txtAbfahrt.Text.Substring(0, txtAbfahrt.Text.Length - 1);
+                    txtAbfahrt.Select(txtAbfahrt.Text.Length, 0);
+                }
+
             }
         }
 
@@ -81,7 +96,14 @@ namespace ÖV_Plan_WinForm
             for (int i = 0; i < stationNach.Count -1; i++)
             {
                 string ausgabeNach = stationNach[i].Name;
-                libVorschlagNach.Items.Add(ausgabeNach);
+                try
+                {
+                    libVorschlagNach.Items.Add(ausgabeNach);
+                }catch (System.ArgumentNullException)
+                {
+                    txtAnkunft.Text = txtAnkunft.Text.Substring(0, txtAnkunft.Text.Length - 1);
+                    txtAnkunft.Select(txtAnkunft.Text.Length, 0);
+                }
             }
 
             
@@ -100,10 +122,22 @@ namespace ÖV_Plan_WinForm
             for (int i = 0; i < stationFahrplan.Count -1; i++)
             {
                 string ausgabeStation = stationFahrplan[i].Name;
-                libVorschlagStation.Items.Add(ausgabeStation);
+                try
+                {
+                    libVorschlagStation.Items.Add(ausgabeStation);
+                }
+                catch (System.ArgumentNullException)
+                {
+                    txtStation.Text = txtStation.Text.Substring(0, txtStation.Text.Length - 1);
+                    txtStation.Select(txtStation.Text.Length, 0);
+                }
             }
         }
 
+        /*
+         * -Wenn man auf einen Vorschalg doppel Clickt, wir die Station in 
+         * die TextBox eingefügt.
+         */
         private void On_Double_Click_Von(object sender, MouseEventArgs e)
         {
             txtAbfahrt.Text = libVorschlagVon.SelectedItem.ToString();
@@ -119,6 +153,10 @@ namespace ÖV_Plan_WinForm
             txtStation.Text = libVorschlagStation.SelectedItem.ToString();
         }
 
+        /*
+         * -Schaut das keine ungültige Zeit eingegeben wird.
+         * -erzeugt nach 2 Zahlen ein ":".
+         */
         private void On_Text_Changed_Time(object sender, EventArgs e)
         {
             txtTime.MaxLength = 5;
@@ -131,25 +169,12 @@ namespace ÖV_Plan_WinForm
             txtTime.SelectionStart = txtTime.Text.Length;
         }
 
-        private void On_Text_Changed_Time_Station(object sender, EventArgs e)
-        {
-            txtTimeStation.MaxLength = 5;
-            DeleteCharsStation();
-            if (txtTimeStation.Text.Length == 2)
-            {
-                txtTimeStation.Text += ":";
-            }
-
-            txtTimeStation.SelectionStart = txtTimeStation.Text.Length;
-        }
+        /*
+         * -löscht die Zeichen in der Zeit TextBox
+         */
         private void DeleteChars()
         {
             if (!txtTime.Text.EndsWith("0") && !txtTime.Text.EndsWith("1") && !txtTime.Text.EndsWith("2") && !txtTime.Text.EndsWith("3") && !txtTime.Text.EndsWith("4") && !txtTime.Text.EndsWith("5") && !txtTime.Text.EndsWith("6") && !txtTime.Text.EndsWith("7") && !txtTime.Text.EndsWith("8") && !txtTime.Text.EndsWith("9") && !txtTime.Text.EndsWith(":"))
-                SendKeys.Send("{BACKSPACE}");
-        }
-        private void DeleteCharsStation()
-        {
-            if (!txtTimeStation.Text.EndsWith("0") && !txtTimeStation.Text.EndsWith("1") && !txtTimeStation.Text.EndsWith("2") && !txtTimeStation.Text.EndsWith("3") && !txtTimeStation.Text.EndsWith("4") && !txtTimeStation.Text.EndsWith("5") && !txtTimeStation.Text.EndsWith("6") && !txtTimeStation.Text.EndsWith("7") && !txtTimeStation.Text.EndsWith("8") && !txtTimeStation.Text.EndsWith("9") && !txtTimeStation.Text.EndsWith(":"))
                 SendKeys.Send("{BACKSPACE}");
         }
     }

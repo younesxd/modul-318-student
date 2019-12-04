@@ -43,9 +43,6 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.txtTime = new System.Windows.Forms.TextBox();
             this.lblTitel = new System.Windows.Forms.Label();
-            this.txtTimeStation = new System.Windows.Forms.TextBox();
-            this.datePickerStation = new System.Windows.Forms.DateTimePicker();
-            this.lblDateStation = new System.Windows.Forms.Label();
             this.btnSearch2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -189,34 +186,6 @@
             this.lblTitel.TabIndex = 23;
             this.lblTitel.Text = "ÖV PLAN";
             // 
-            // txtTimeStation
-            // 
-            this.txtTimeStation.Location = new System.Drawing.Point(342, 416);
-            this.txtTimeStation.Name = "txtTimeStation";
-            this.txtTimeStation.Size = new System.Drawing.Size(156, 22);
-            this.txtTimeStation.TabIndex = 27;
-            this.txtTimeStation.TextChanged += new System.EventHandler(this.On_Text_Changed_Time_Station);
-            // 
-            // datePickerStation
-            // 
-            this.datePickerStation.CustomFormat = "MM.dd.yyyy";
-            this.datePickerStation.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.datePickerStation.Location = new System.Drawing.Point(342, 387);
-            this.datePickerStation.Margin = new System.Windows.Forms.Padding(4);
-            this.datePickerStation.Name = "datePickerStation";
-            this.datePickerStation.Size = new System.Drawing.Size(156, 22);
-            this.datePickerStation.TabIndex = 26;
-            // 
-            // lblDateStation
-            // 
-            this.lblDateStation.AutoSize = true;
-            this.lblDateStation.Location = new System.Drawing.Point(340, 366);
-            this.lblDateStation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblDateStation.Name = "lblDateStation";
-            this.lblDateStation.Size = new System.Drawing.Size(130, 17);
-            this.lblDateStation.TabIndex = 25;
-            this.lblDateStation.Text = "Datum und Uhrzeit:";
-            // 
             // btnSearch2
             // 
             this.btnSearch2.BackColor = System.Drawing.SystemColors.HotTrack;
@@ -236,9 +205,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(819, 566);
-            this.Controls.Add(this.txtTimeStation);
-            this.Controls.Add(this.datePickerStation);
-            this.Controls.Add(this.lblDateStation);
             this.Controls.Add(this.btnSearch2);
             this.Controls.Add(this.lblTitel);
             this.Controls.Add(this.txtTime);
@@ -256,7 +222,7 @@
             this.Controls.Add(this.btnSearch1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Hauptseite";
-            this.Text = "Form1";
+            this.Text = "ÖV-Plan";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,9 +245,6 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.TextBox txtTime;
         private System.Windows.Forms.Label lblTitel;
-        private System.Windows.Forms.TextBox txtTimeStation;
-        private System.Windows.Forms.DateTimePicker datePickerStation;
-        private System.Windows.Forms.Label lblDateStation;
         private System.Windows.Forms.Button btnSearch2;
     }
 }

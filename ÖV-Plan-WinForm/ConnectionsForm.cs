@@ -19,19 +19,21 @@ namespace ÖV_Plan_WinForm
         }
 
 
-
-        public void connectionAusgabe(string abfahrt, string ankunft, string date, string time)
+        /*
+         * -Übergibt dem API die verschiedenen Daten zur Verbindung
+         * -Gibt diese Verbindungen im ListView aus
+         */
+        public void connectionAusgabe(string abfahrt, string ankunft, string datum, string zeit)
         {
             transport = new SwissTransport.Transport();
-            var connections = transport.GetConnections(abfahrt, ankunft, date, time).ConnectionList;
-            var stations = transport.GetStationBoard(abfahrt, "null", date, time).Entries;
+            var verbindungen = transport.GetConnections(abfahrt, ankunft, datum, zeit).ConnectionList;
+            var stationen = transport.GetStationBoard(abfahrt, "null").Entries;
 
-            libConnections.Items.Clear();
-
-            for (int i = 0; i < connections.Count; i++)
+            for (int i = 0; i < verbindungen.Count; i++)
             {
-                string ausgabe = "      " +connections[i].From.Departure.Remove(0, 11).Remove(5, 8) + "\t\t" + connections[i].To.Arrival.Remove(0, 11).Remove(5, 8) + "\t\t" + connections[i].Duration.Remove(0, 3).Remove(5, 3) + "\t\t" + stations[i].Category + stations[i].Number;
-                libConnections.Items.Add(ausgabe);
+                string ausgabeNummer = stationen[i].Category + stationen[i].Number;
+                string[] ausgabe = { verbindungen[i].From.Departure.Remove(0, 11).Remove(5, 8), verbindungen[i].To.Arrival.Remove(0, 11).Remove(5, 8), ausgabeNummer, verbindungen[i].Duration.Remove(0, 3).Remove(5, 3)};
+                livConnections.Items.Add(new ListViewItem(ausgabe));
             }
         }
     }

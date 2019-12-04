@@ -18,17 +18,22 @@ namespace ÖV_Plan_WinForm
             InitializeComponent();
         }
 
-        public void fahrplanAusgabe(string station, string date, string time)
+        /*
+         * -Übergibt dem API die Daten zum Fahrplan
+         * -Gibt den Farplan im ListView aus
+         */
+        public void fahrplanAusgabe(string station)
         {
             transport = new SwissTransport.Transport();
-            var stations = transport.GetStationBoard(station, "null", date, time).Entries;
+            var stationen = transport.GetStationBoard(station, "null").Entries;
 
-            libFahrplan.Items.Clear();
-
-            for (int i = 0; i < stations.Count; i++)
+            for (int i = 0; i < stationen.Count; i++)
             {
-                string ausgabe = stations[i].Stop.Departure.TimeOfDay + stations[i].To + stations[i].Category + stations[i].Number;
-                libFahrplan.Items.Add(ausgabe);
+                string datumString = stationen[i].Stop.Departure.ToString().Remove(0, 11);
+                string ausgabeNummer = stationen[i].Category + stationen[i].Number;
+                string[] ausgabe = { datumString, stationen[i].To, ausgabeNummer};
+
+                livFahrplan.Items.Add(new ListViewItem(ausgabe));
             }
 
 

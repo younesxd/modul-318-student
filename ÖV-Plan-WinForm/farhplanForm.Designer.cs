@@ -28,22 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.libFahrplan = new System.Windows.Forms.ListBox();
             this.lblTitel = new System.Windows.Forms.Label();
-            this.lblDauer = new System.Windows.Forms.Label();
-            this.lblAnkunft = new System.Windows.Forms.Label();
-            this.lblAbfahrt = new System.Windows.Forms.Label();
+            this.livFahrplan = new System.Windows.Forms.ListView();
+            this.cAbfahrt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cRichtung = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cBus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
-            // 
-            // libFahrplan
-            // 
-            this.libFahrplan.FormattingEnabled = true;
-            this.libFahrplan.ItemHeight = 16;
-            this.libFahrplan.Location = new System.Drawing.Point(57, 129);
-            this.libFahrplan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.libFahrplan.Name = "libFahrplan";
-            this.libFahrplan.Size = new System.Drawing.Size(600, 260);
-            this.libFahrplan.TabIndex = 0;
             // 
             // lblTitel
             // 
@@ -55,57 +45,55 @@
             this.lblTitel.TabIndex = 1;
             this.lblTitel.Text = "FAHRPLAN";
             // 
-            // lblDauer
+            // livFahrplan
             // 
-            this.lblDauer.AutoSize = true;
-            this.lblDauer.Location = new System.Drawing.Point(317, 108);
-            this.lblDauer.Name = "lblDauer";
-            this.lblDauer.Size = new System.Drawing.Size(47, 17);
-            this.lblDauer.TabIndex = 7;
-            this.lblDauer.Text = "Dauer";
+            this.livFahrplan.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.cAbfahrt,
+            this.cRichtung,
+            this.cBus});
+            this.livFahrplan.HideSelection = false;
+            this.livFahrplan.Location = new System.Drawing.Point(57, 113);
+            this.livFahrplan.Name = "livFahrplan";
+            this.livFahrplan.Size = new System.Drawing.Size(600, 276);
+            this.livFahrplan.TabIndex = 2;
+            this.livFahrplan.UseCompatibleStateImageBehavior = false;
+            this.livFahrplan.View = System.Windows.Forms.View.Details;
             // 
-            // lblAnkunft
+            // cAbfahrt
             // 
-            this.lblAnkunft.AutoSize = true;
-            this.lblAnkunft.Location = new System.Drawing.Point(183, 108);
-            this.lblAnkunft.Name = "lblAnkunft";
-            this.lblAnkunft.Size = new System.Drawing.Size(56, 17);
-            this.lblAnkunft.TabIndex = 6;
-            this.lblAnkunft.Text = "Ankunft";
+            this.cAbfahrt.Text = "Abfahrt";
+            this.cAbfahrt.Width = 150;
             // 
-            // lblAbfahrt
+            // cRichtung
             // 
-            this.lblAbfahrt.AutoSize = true;
-            this.lblAbfahrt.Location = new System.Drawing.Point(85, 108);
-            this.lblAbfahrt.Name = "lblAbfahrt";
-            this.lblAbfahrt.Size = new System.Drawing.Size(54, 17);
-            this.lblAbfahrt.TabIndex = 5;
-            this.lblAbfahrt.Text = "Abfahrt";
+            this.cRichtung.Text = "Richtung";
+            this.cRichtung.Width = 150;
+            // 
+            // cBus
+            // 
+            this.cBus.Text = "Bus/ Zug Nummer";
+            this.cBus.Width = 150;
             // 
             // farhplanForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(711, 418);
-            this.Controls.Add(this.lblDauer);
-            this.Controls.Add(this.lblAnkunft);
-            this.Controls.Add(this.lblAbfahrt);
+            this.Controls.Add(this.livFahrplan);
             this.Controls.Add(this.lblTitel);
-            this.Controls.Add(this.libFahrplan);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "farhplanForm";
-            this.Text = "farhplanForm";
+            this.Text = "Fahrplan";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox libFahrplan;
         private System.Windows.Forms.Label lblTitel;
-        private System.Windows.Forms.Label lblDauer;
-        private System.Windows.Forms.Label lblAnkunft;
-        private System.Windows.Forms.Label lblAbfahrt;
+        private System.Windows.Forms.ListView livFahrplan;
+        private System.Windows.Forms.ColumnHeader cAbfahrt;
+        private System.Windows.Forms.ColumnHeader cRichtung;
+        private System.Windows.Forms.ColumnHeader cBus;
     }
 }
